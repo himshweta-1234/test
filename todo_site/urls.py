@@ -19,11 +19,8 @@ from todo import views
 
 urlpatterns = [
     path('', views.index1, name="todo"),
-   # path('index1/', views.index1 ,name="todo1"),
     path('del/<int:item_id>', views.remove, name="del"),
     path('admin/', admin.site.urls),
-    path('update/<int:id>/', views.update, name="update"),
-    path('<int:id>', views.detail ),
     path('<int:id>/', views.update_data, name="updatedata"),
     path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord')
 

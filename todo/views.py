@@ -39,26 +39,6 @@ def remove(request, item_id):
     messages.info(request, "item removed !!!")
     return redirect('todo')
 
-def detail(request, id):
-    context = {}
-    context["data"] = Todo.objects.get(id=id)
-    return render(request, "detail.html", context)
- 
-
-def update(request, id):
-    obj = get_object_or_404(Todo, id =id)
-    context ={'obj':obj}
-    form = TodoForm(request.POST, instance=obj)
-
-    if form.is_valid():
-        form.save()
-        return redirect("todo", args=id)
- 
-    context["form"] = TodoForm(instance=obj)
- 
-    return render(request, "todo/update.html", context)
-
-
 
 # this function is for update
 def update_data(request,id):
@@ -82,27 +62,3 @@ def updaterecord(request, id):
   member.lastname = last
   member.save()
   return HttpResponseRedirect(reverse('todo'))
-"""
-
-
-def index1(request):
-    item_list = Todo.objects.order_by("-date")
-    if request.method=='POST':
-        fm = TodoForm(request.POST)
-        if fm.is_valid():
-            fm.save()
-            return redirect('todo')
-
-    else:
-        fm = TodoForm()
-    return render(request,'todo/index1.html',{'form':fm})
-
-
-def index1(request):
-    item_list = Todo.objects.order_by("-date")
-    if request.method=='POST':
-        fm = TodoForm(request.POST)
-        if fm.is_valid():
-            fm.save()
-    return render(request,'todo/index1.html',{'form':fm})
-    """
